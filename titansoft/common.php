@@ -20,7 +20,7 @@ function errorCode($code) {
 			$_SESSION['error'] = "More than 4 staff. Please make sure it's not than 4 staff!";
 			break;
 		case 4:
-			$_SESSION['error'] = "Wrong file format. Please make sure the format is correct!";
+			$_SESSION['error'] = "Wrong format. Please make sure the format is correct!";
 			break;	
 		case 5:
 			$_SESSION['error'] = "Same staff at the same day is not allowed!";
@@ -29,11 +29,11 @@ function errorCode($code) {
 			$_SESSION['error'] = "Something is not right here. Please try again!";
 	}
 	redirect();
-	exit;
 }
 
 function redirect() {
 	header('location:index.php');
+	exit();
 }
 
 function setGlobalStaff() {

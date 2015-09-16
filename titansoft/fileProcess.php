@@ -25,30 +25,30 @@ function checkFileSize($file) {
 }
 
 function readFileContent($file) {
-	$_SESSION['data'] = array();
 	$myfile = fopen($file, "r") or errorCode(99);
 	$count = 0;
+	$tempData = array();
 	while (!feof($myfile)) {
 		$count++;
 		$input = fgets($myfile);
-		if ($count > 2) storeData($input);
-		if ($count > 6) {
-			unset($_SESSION['data']);
-			errorCode(3);
-			break;
-		}
+		if ($count > 2) storeTempData($tempData, $input);
+		if ($count > 6) errorCode(3);
 	}
 	fclose($myfile);
-	if (count($_SESSION['data']) < 1) errorCode(4);
+	storeData($tempData);
+	if (isset($_SESSION['data']) && count($_SESSION['data']) < 1) errorCode(4);
 	
 }
 
-function storeData($input) {
+function storeTempData(&$tempData,$input) {
 	$input = explode("\t\t", $input);
 	$input[1] = convertDayToArr($input[1]);
-	array_push($_SESSION['data'], $input);
+	array_push($tempData, $input);
 }
 
+function storeData($tempData) {
+	$_SESSION['data'] = $tempData;
+}
 function convertDayToArr($dayStr) {
 	$dayArr = explode(",", strtolower($dayStr));
 	

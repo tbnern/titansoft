@@ -54,10 +54,10 @@
 		</form>
 		
 		<?php 
-			if (checkScheduleFileExist()) echo "<a href='".$GLOBALS['scheduleFile'] ."'target='_blank'>Show Weekly Schedule</a>";
+			if (checkScheduleFileExist()) echo "<a href='".$GLOBALS['scheduleFile']."?a=".rand(1, 9999999999)."'target='_blank'>Show Weekly Schedule</a>";
 		
 			foreach ($GLOBALS['staff'] as $key => $value) {
-				if(checkIndividualFileExist($value)) echo "<br><a href='".$GLOBALS['scheduleFolder']."/".$value.".txt"."'target='_blank'>".$value." Schedule</a>";
+				if(checkIndividualFileExist($value)) echo "<br><a href='".$GLOBALS['scheduleFolder']."/".$value.".txt?a=".rand(1, 9999999999)."'target='_blank'>".$value." Schedule</a>";
 			}		
 		?>
 		<?php endif; ?>
