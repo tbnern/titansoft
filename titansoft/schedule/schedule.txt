@@ -1,7 +1,7 @@
-Monday	Alpha	Bravo	
-Tuesday	Bravo	Delta	
-Wednesday	Charlie	Delta	
-Thursday	Charlie	Delta	
-Friday	Charlie	Delta	
-Saturday	Alpha	Charlie	Delta	
-Sunday	Alpha	Delta	Charlie	
+Monday	Alpha	Charlie	
+Tuesday	Bravo	Charlie	
+Wednesday	Alpha	Delta	
+Thursday	Bravo	Charlie	
+Friday	Alpha	Bravo	
+Saturday	Alpha	Bravo	Delta	
+Sunday	Bravo	Charlie	Delta	

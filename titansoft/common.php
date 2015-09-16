@@ -24,7 +24,10 @@ function errorCode($code) {
 			break;	
 		case 5:
 			$_SESSION['error'] = "Same staff at the same day is not allowed!";
-			break;	
+			break;
+		case 6:
+			$_SESSION['error'] = "Staff is not allowed to work more than 5 days!";
+			break;		
 		default:
 			$_SESSION['error'] = "Something is not right here. Please try again!";
 	}

@@ -5,7 +5,7 @@ $submit = $_POST['submit'];
 if (!isset($submit)) errorCode(99);
 
 $dataArr = getOptionsData();
-saveToScheduleFile($dataArr);
+checkSchedule($dataArr);
 redirect();  
 
 function getOptionsData() {
@@ -23,20 +23,26 @@ function getOptionsData() {
 	return $result;
 }
 
-function saveToScheduleFile($dataArr) {
-	$myfile = fopen($GLOBALS['scheduleFile'], "w") or die("Unable to open file!");
+function checkSchedule($dataArr) {
 	$staffWorkArr = array();
+	$txt = "";
 	foreach ($dataArr as $key => $valueArray) {
-		$txt = $valueArray['day'] . "\t";
+		$txt = $txt . $valueArray['day'] . "\t";
 		foreach ($valueArray['staff'] as $secondKey => $value) {
 			$txt = $txt . $value . "\t";
 			$staffWorkArr[$value][] = $valueArray['day'];
+			if (count($staffWorkArr[$value]) >= 6) errorCode(6);
 		}
 		$txt = $txt . "\n";
-		fwrite($myfile, $txt);
 	}
-	fclose($myfile);
+	saveToScheduleFile($txt);
 	saveToIndividualFile($staffWorkArr);
+}
+
+function saveToScheduleFile($txt) {
+	$myfile = fopen($GLOBALS['scheduleFile'], "w") or die("Unable to open file!");
+	fwrite($myfile, $txt);
+	fclose($myfile);
 }
 
 function saveToIndividualFile($staffWorkArr) {
